@@ -323,8 +323,7 @@ header h1{
   font-size:22px;
   color:#102a43;
 }
-header h1::after{
-  content:"运营后台 · 广告数据复盘工作台";
+header h1 .header-greeting{
   margin-left:auto;
   color:#8592a3;
   font-size:13px;
@@ -607,7 +606,7 @@ header h1{
   color:#0b1f50;
   border-bottom:1px solid #e8eef7;
 }
-header h1::after{
+header h1 .header-greeting{
   color:#8090aa;
 }
 header .toolbar,
@@ -716,7 +715,7 @@ body{
 .nav-subitem.active{background:rgba(243,241,232,.98);color:var(--palette-deep)}
 header{background:linear-gradient(180deg,#F7F5EC 0%,#E8E5D8 100%);box-shadow:0 1px 14px rgba(54,54,54,.12)}
 header h1{color:var(--palette-deep);border-bottom-color:var(--palette-line)}
-header h1::after{color:var(--palette-muted)}
+header h1 .header-greeting{color:var(--palette-muted)}
 header .toolbar{background:rgba(243,241,232,.96);border-color:var(--palette-line)}
 label{color:var(--palette-muted)}
 select,input{border-color:#CDC8BB;background:#F8F6EE;color:var(--palette-text)}
@@ -761,7 +760,7 @@ canvas{background:linear-gradient(180deg,#F8F6EE 0%,#CAD2C5 100%);border-color:v
   <div class="nav-item">广告自动化</div>
 </aside>
 <header>
-  <h1>广告数据面板</h1>
+  <h1><span>广告数据面板</span><span class="header-greeting" id="headerGreeting"></span></h1>
   <div class="toolbar">
     <label>项目<select id="project"></select></label>
     <label>渠道<select id="channel"><option value="ALL">APP+PC全部</option><option value="APP">APP数据</option><option value="PC">PC数据</option></select></label>
@@ -807,7 +806,7 @@ window.ADSTAT_DATA = {
                   "start":  "2026-06-22",
                   "end":  "2026-06-28"
               },
-    "generatedAt":  "2026-06-30 16:44:02",
+    "generatedAt":  "2026-06-30 16:48:04",
     "source":  {
                    "appRaw":  "raw/banner-stat-2.json",
                    "pcRaw":  "raw/banner-stat-4.json"
@@ -2296,6 +2295,8 @@ window.ADSTAT_DATA = {
 const PROJECTS=ADSTAT_DATA.projects||[{name:ADSTAT_DATA.project.name,groupId:ADSTAT_DATA.project.groupId}];
 const state={projectName:ADSTAT_DATA.project.name,groupId:String(ADSTAT_DATA.project.groupId),channel:'ALL',sample:0,dateType:'ALL',search:'',selectedDate:ADSTAT_DATA.range.start,grain:'day',detailDate:'ALL',detailChannel:'ALL',detailAudience:'',detailLimit:50};
 const $=id=>document.getElementById(id), fmt=n=>Number(n||0).toLocaleString('zh-CN'), pct=n=>`${Number(n||0).toFixed(2)}%`;
+function greetingText(){const h=new Date().getHours();if(h<12)return '早上好！';if(h<18)return '下午好！';return '晚上好！'}
+function updateGreeting(){const el=$('headerGreeting');if(el)el.textContent=`${greetingText()} · 广告数据复盘工作台`}
 function filtered(){return ADSTAT_DATA.rows.filter(r=>(state.channel==='ALL'||r.channel===state.channel)&&r.popup>=state.sample&&(String(r.adId).includes(state.search)||r.title.includes(state.search)||!state.search));}
 function sum(rows){const s=rows.reduce((a,r)=>{['popup','click','purchaseClick','order','deal'].forEach(k=>a[k]+=Number(r[k]||0));return a},{popup:0,click:0,purchaseClick:0,order:0,deal:0});s.clickRate=s.popup?s.click*100/s.popup:0;s.purchaseClickRate=s.click?s.purchaseClick*100/s.click:0;s.orderSubmitRate=s.click?s.order*100/s.click:0;s.paymentFinishRate=s.order?s.deal*100/s.order:0;return s}
 function dailyRows(rows){const map={};rows.forEach(r=>{map[r.date]??=[];map[r.date].push(r)});return Object.entries(map).map(([date,rs])=>({date,adCount:rs.length,...sum(rs)})).sort((a,b)=>a.date.localeCompare(b.date));}
@@ -2306,6 +2307,7 @@ function syncDetailFilters(rows){const dates=[...new Set(rows.map(r=>r.date))].s
 function detailFilteredRows(rows){return rows.filter(r=>(state.detailDate==='ALL'||r.date===state.detailDate)&&(state.detailChannel==='ALL'||r.channel===state.detailChannel)&&(!state.detailAudience||String(r.target||'').includes(state.detailAudience)||String(r.audienceKey||'').includes(state.detailAudience)));}
 function tags(r){const t=[]; if(r.popup<50)t.push('样本不足'); if(r.popup>=50&&r.clickRate<2)t.push('高曝光低点击'); if(r.clickRate>=3&&r.orderSubmitRate<50)t.push('点击好但下单弱'); if(r.order>0&&r.paymentFinishRate<5)t.push('下单好但成交弱'); if(r.clickRate>=4)t.push('素材可复用'); return t.length?t:['需复核人群匹配'];}
 function render(){
+ updateGreeting();
  const rows=filtered(), d=dailyRows(rows), chartD=trendRows(rows), total=sum(rows);
  $('status').textContent=`生成时间：${ADSTAT_DATA.generatedAt} | 当前项目：${state.projectName} | 分组ID：${state.groupId} | 渠道：${state.channel} | 日期类型：${state.dateType} | 交易日口径：未接入交易日历 | PPT状态：${ADSTAT_DATA.sideData.ppt.status} | 更新状态：${ADSTAT_DATA.sideData.localAssistant.status}`;
  $('summaryCards').innerHTML=[['广告数',rows.length],['弹出数',total.popup],['点击数',total.click],['购买点击',total.purchaseClick],['提交订单',total.order],['成交数',total.deal],['点击率',pct(total.clickRate)],['付款完成率',pct(total.paymentFinishRate)]].map(x=>`<div class=card><span>${x[0]}</span><strong>${typeof x[1]==='number'?fmt(x[1]):x[1]}</strong></div>`).join('');
