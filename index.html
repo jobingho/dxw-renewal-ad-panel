@@ -670,26 +670,26 @@ tr.active{
   main{padding:12px}
   .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-/* Custom palette requested 2026-06-30: #CAD2C5 -> #363636 -> #8C3232. */
+/* Custom palette requested 2026-06-30: pure white + deep ocean blue. */
 :root{
-  --palette-main:#CAD2C5;
-  --palette-mid:#363636;
-  --palette-deep:#8C3232;
-  --palette-deep-2:#702525;
-  --palette-line:#D6D3C8;
-  --palette-panel:#F3F1E8;
-  --palette-text:#2F2D2A;
-  --palette-muted:#6E6B63;
+  --palette-main:#0E61AC;
+  --palette-mid:#FFFFFF;
+  --palette-deep:#0E61AC;
+  --palette-deep-2:#084C8A;
+  --palette-line:#D9E6F3;
+  --palette-panel:#FFFFFF;
+  --palette-text:#17324A;
+  --palette-muted:#64748B;
 }
 body{
-  background:linear-gradient(180deg,rgba(140,50,50,.08) 0%,rgba(54,54,54,.10) 36%,var(--palette-main) 100%);
+  background:#FFFFFF;
   color:var(--palette-text);
 }
 .side-rail{
-  background:linear-gradient(180deg,var(--palette-deep) 0%,#743333 42%,var(--palette-mid) 100%);
-  box-shadow:12px 0 28px rgba(54,54,54,.20);
+  background:linear-gradient(180deg,var(--palette-main) 0%,#125C9C 54%,#0A3D70 100%);
+  box-shadow:12px 0 28px rgba(14,97,172,.20);
 }
-.side-brand{color:#F3F1E8;border-bottom:1px solid rgba(202,210,197,.24)}
+.side-brand{color:#FFFFFF;border-bottom:1px solid rgba(255,255,255,.24)}
 .brand-mark{
   background:linear-gradient(180deg,var(--palette-deep) 0%,var(--palette-mid) 58%,var(--palette-main) 100%);
   border:1px solid rgba(255,255,255,.45);
@@ -701,49 +701,49 @@ body{
   object-fit:cover;
   display:block;
   background:#E11919;
-  border:1px solid rgba(202,210,197,.72);
+  border:1px solid rgba(255,255,255,.78);
   box-shadow:0 4px 10px rgba(42,18,19,.18);
 }
-.side-search{background:rgba(243,241,232,.94);border-color:rgba(202,210,197,.52);color:var(--palette-deep)}
-.nav-group-title{color:#E8E5D8}
-.nav-item{color:#F3F1E8}
-.nav-item::before{background:#CAD2C5}
-.nav-item.active{background:rgba(243,241,232,.96);color:var(--palette-deep);box-shadow:inset 4px 0 0 var(--palette-deep)}
+.side-search{background:rgba(255,255,255,.96);border-color:rgba(255,255,255,.52);color:var(--palette-main)}
+.nav-group-title{color:#EAF4FF}
+.nav-item{color:#FFFFFF}
+.nav-item::before{background:#FFFFFF}
+.nav-item.active{background:#FFFFFF;color:var(--palette-main);box-shadow:inset 4px 0 0 #084C8A}
 .nav-item.active::before{background:var(--palette-deep)}
-.nav-subgroup{background:rgba(202,210,197,.12)}
-.nav-subitem{color:#F3F1E8}
-.nav-subitem.active{background:rgba(243,241,232,.98);color:var(--palette-deep)}
-header{background:linear-gradient(180deg,#F7F5EC 0%,#E8E5D8 100%);box-shadow:0 1px 14px rgba(54,54,54,.12)}
+.nav-subgroup{background:rgba(255,255,255,.14)}
+.nav-subitem{color:#FFFFFF}
+.nav-subitem.active{background:#FFFFFF;color:var(--palette-main)}
+header{background:#FFFFFF;box-shadow:0 1px 14px rgba(14,97,172,.10)}
 header h1{color:var(--palette-deep);border-bottom-color:var(--palette-line)}
 header h1 .header-greeting{color:var(--palette-muted)}
-header .toolbar{background:rgba(243,241,232,.96);border-color:var(--palette-line)}
+header .toolbar{background:#FFFFFF;border-color:var(--palette-line)}
 label{color:var(--palette-muted)}
-select,input{border-color:#CDC8BB;background:#F8F6EE;color:var(--palette-text)}
-select:focus,input:focus{outline:2px solid rgba(140,50,50,.24);border-color:var(--palette-deep)}
-button{border-color:#CDC8BB;background:#F8F6EE;color:var(--palette-deep);box-shadow:0 6px 14px rgba(54,54,54,.08)}
-button:hover{box-shadow:0 9px 20px rgba(54,54,54,.14)}
+select,input{border-color:#C9D9EA;background:#FFFFFF;color:var(--palette-text)}
+select:focus,input:focus{outline:2px solid rgba(14,97,172,.22);border-color:var(--palette-main)}
+button{border-color:#C9D9EA;background:#FFFFFF;color:var(--palette-main);box-shadow:0 6px 14px rgba(14,97,172,.08)}
+button:hover{box-shadow:0 9px 20px rgba(14,97,172,.14)}
 .primary,button.primary,#updateLatest{background:var(--palette-deep);border-color:var(--palette-deep);color:#fff}
-#makePpt,#savePpt{background:var(--palette-mid);border-color:var(--palette-mid);color:#F3F1E8}
-header .status,.status{background:#E7E2D4;border-color:var(--palette-line);color:var(--palette-muted)}
+#makePpt,#savePpt{background:#084C8A;border-color:#084C8A;color:#FFFFFF}
+header .status,.status{background:#F5FAFF;border-color:var(--palette-line);color:var(--palette-muted)}
 main{background:transparent}
-.section{background:rgba(243,241,232,.92);border-color:var(--palette-line);box-shadow:0 12px 30px rgba(54,54,54,.10)}
+.section{background:#FFFFFF;border-color:var(--palette-line);box-shadow:0 12px 30px rgba(14,97,172,.08)}
 h2,.section-title{color:var(--palette-deep)}
-.card{background:linear-gradient(180deg,#F8F6EE 0%,#E8E5D8 100%);border-color:var(--palette-line);box-shadow:0 10px 22px rgba(54,54,54,.08)}
-.card:nth-child(2n){background:linear-gradient(180deg,#F8F6EE 0%,#DDE3D6 100%)}
-.card:nth-child(3n){background:linear-gradient(180deg,#F8F6EE 0%,#EBE6D8 100%)}
+.card{background:#FFFFFF;border-color:var(--palette-line);box-shadow:0 10px 22px rgba(14,97,172,.07)}
+.card:nth-child(2n){background:#F8FBFF}
+.card:nth-child(3n){background:#FFFFFF}
 .card span{color:var(--palette-muted)}
 .card strong{color:var(--palette-deep)}
-.table-wrap{background:#F8F6EE;border-color:var(--palette-line)}
-table{background:#F8F6EE}
-th{background:#E1DCCD;color:var(--palette-deep)}
-td,th{border-bottom-color:#D8D1C3}
-tr.active{background:#DDE3D6;outline:2px solid var(--palette-deep)}
-.tag,.material-pill{background:#E7E2D4;color:var(--palette-deep);border-color:#CDC8BB}
-.empty{background:#ECE8DA;border-color:var(--palette-line);color:var(--palette-muted)}
-canvas{background:linear-gradient(180deg,#F8F6EE 0%,#CAD2C5 100%);border-color:var(--palette-line)}
-.drawer{background:rgba(243,241,232,.98);border-left-color:var(--palette-line);box-shadow:-18px 0 40px rgba(54,54,54,.18)}
+.table-wrap{background:#FFFFFF;border-color:var(--palette-line)}
+table{background:#FFFFFF}
+th{background:#F2F7FD;color:var(--palette-deep)}
+td,th{border-bottom-color:#E3EDF7}
+tr.active{background:#EEF6FF;outline:2px solid var(--palette-main)}
+.tag,.material-pill{background:#EEF6FF;color:var(--palette-main);border-color:#C9D9EA}
+.empty{background:#F8FBFF;border-color:var(--palette-line);color:var(--palette-muted)}
+canvas{background:#FFFFFF;border-color:var(--palette-line)}
+.drawer{background:#FFFFFF;border-left-color:var(--palette-line);box-shadow:-18px 0 40px rgba(14,97,172,.16)}
 .material-cell summary{color:var(--palette-deep)}
-.ocr-action,.creative-action{background:#E7E2D4;color:var(--palette-deep);border-color:#CDC8BB}
+.ocr-action,.creative-action{background:#EEF6FF;color:var(--palette-main);border-color:#C9D9EA}
 </style>
 </head>
 <body>
@@ -806,7 +806,7 @@ window.ADSTAT_DATA = {
                   "start":  "2026-06-22",
                   "end":  "2026-06-28"
               },
-    "generatedAt":  "2026-06-30 16:48:04",
+    "generatedAt":  "2026-06-30 16:59:37",
     "source":  {
                    "appRaw":  "raw/banner-stat-2.json",
                    "pcRaw":  "raw/banner-stat-4.json"
@@ -2296,7 +2296,7 @@ const PROJECTS=ADSTAT_DATA.projects||[{name:ADSTAT_DATA.project.name,groupId:ADS
 const state={projectName:ADSTAT_DATA.project.name,groupId:String(ADSTAT_DATA.project.groupId),channel:'ALL',sample:0,dateType:'ALL',search:'',selectedDate:ADSTAT_DATA.range.start,grain:'day',detailDate:'ALL',detailChannel:'ALL',detailAudience:'',detailLimit:50};
 const $=id=>document.getElementById(id), fmt=n=>Number(n||0).toLocaleString('zh-CN'), pct=n=>`${Number(n||0).toFixed(2)}%`;
 function greetingText(){const h=new Date().getHours();if(h<12)return '早上好！';if(h<18)return '下午好！';return '晚上好！'}
-function updateGreeting(){const el=$('headerGreeting');if(el)el.textContent=`${greetingText()} · 广告数据复盘工作台`}
+function updateGreeting(){const el=$('headerGreeting');if(el)el.textContent=greetingText()}
 function filtered(){return ADSTAT_DATA.rows.filter(r=>(state.channel==='ALL'||r.channel===state.channel)&&r.popup>=state.sample&&(String(r.adId).includes(state.search)||r.title.includes(state.search)||!state.search));}
 function sum(rows){const s=rows.reduce((a,r)=>{['popup','click','purchaseClick','order','deal'].forEach(k=>a[k]+=Number(r[k]||0));return a},{popup:0,click:0,purchaseClick:0,order:0,deal:0});s.clickRate=s.popup?s.click*100/s.popup:0;s.purchaseClickRate=s.click?s.purchaseClick*100/s.click:0;s.orderSubmitRate=s.click?s.order*100/s.click:0;s.paymentFinishRate=s.order?s.deal*100/s.order:0;return s}
 function dailyRows(rows){const map={};rows.forEach(r=>{map[r.date]??=[];map[r.date].push(r)});return Object.entries(map).map(([date,rs])=>({date,adCount:rs.length,...sum(rs)})).sort((a,b)=>a.date.localeCompare(b.date));}
@@ -2318,6 +2318,31 @@ function render(){
  renderChart(chartD); renderDiagnosis(rows.filter(r=>r.date===state.selectedDate)); renderDetails(detailFilteredRows(rows));
 }
 function renderChart(d){const c=$('trend'),ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);ctx.font='14px Microsoft YaHei'; if(!d.length){ctx.fillText('无数据：请检查筛选条件或数据文件',30,40);return} const textColor=getComputedStyle(document.body).color,lowMetrics=[['clickRate','#8C3232','点击率'],['paymentFinishRate','#CAD2C5','付款完成率']],highMetric=['orderSubmitRate','#363636','订单提交率']; const lowMax=Math.max(10,Math.ceil(Math.max(...d.flatMap(x=>lowMetrics.map(([k])=>Number(x[k]||0))))/5)*5), highVals=d.map(x=>Number(x.orderSubmitRate||0)), highMin=Math.max(0,Math.floor((Math.min(...highVals)-5)/5)*5), highMax=Math.min(100,Math.ceil((Math.max(...highVals)+5)/5)*5); const top=48,bottom=224,h=bottom-top,left=58,right=1148,xAt=i=>80+i*(1010/Math.max(1,d.length-1)), yLow=v=>bottom-Math.min(lowMax,Number(v||0))*h/lowMax, yHigh=v=>bottom-(Number(v||0)-highMin)*h/Math.max(1,highMax-highMin); ctx.fillStyle=textColor;ctx.font='16px Microsoft YaHei';ctx.fillText(state.grain==='day'?'按日趋势':state.grain==='week'?'按周趋势':'按月趋势',50,24);[[...highMetric,'右轴'],...lowMetrics.map(x=>[...x,'左轴'])].forEach(([k,color,label,axis],i)=>{const lx=170+i*190;ctx.fillStyle=color;ctx.fillRect(lx,12,22,6);ctx.fillStyle=textColor;ctx.fillText(`${label}（${axis}）`,lx+30,20)});ctx.font='13px Microsoft YaHei';ctx.strokeStyle='#d6d3c8';ctx.lineWidth=1;for(let i=0;i<5;i++){const y=top+i*h/4;ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(right,y);ctx.stroke();ctx.fillStyle='#6E6B63';ctx.fillText(`${(lowMax-i*lowMax/4).toFixed(0)}%`,8,y+4);ctx.fillStyle='#363636';ctx.fillText(`${(highMax-i*(highMax-highMin)/4).toFixed(0)}%`,1162,y+4)}ctx.fillStyle='#6E6B63';ctx.fillText('左轴：点击率/付款完成率',8,246);ctx.fillStyle='#363636';ctx.fillText('右轴：订单提交率',1030,246); if(d.length===1){const x=d[0],bars=[...lowMetrics.map(m=>[...m,'low']),[...highMetric,'high']];bars.forEach(([k,color,label,axis],i)=>{const y=axis==='high'?yHigh(x[k]):yLow(x[k]),barH=Math.max(3,bottom-y),px=260+i*220;ctx.fillStyle=color;ctx.fillRect(px,y,90,barH);ctx.fillStyle=textColor;ctx.fillText(label,px-2,252);ctx.fillText(`${Number(x[k]||0).toFixed(2)}%`,px+8,Math.max(42,y-8));});ctx.fillText(`${d[0].date} 单日指标`,50,270);return}function drawLine(metric,axis,labelOffset){const [k,color,label]=metric,points=d.map((x,i)=>({x:xAt(i),y:axis==='high'?yHigh(x[k]):yLow(x[k]),value:Number(x[k]||0)}));ctx.strokeStyle=color;ctx.lineWidth=3;ctx.beginPath();points.forEach((p,i)=>{i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y)});ctx.stroke();points.forEach(p=>{ctx.fillStyle=color;ctx.beginPath();ctx.arc(p.x,p.y,4,0,Math.PI*2);ctx.fill();ctx.fillStyle=textColor;ctx.font='12px Microsoft YaHei';ctx.fillText(`${p.value.toFixed(2)}%`,p.x-18,p.y+labelOffset);});}drawLine(highMetric,'high',-14);drawLine(lowMetrics[0],'low',-14);drawLine(lowMetrics[1],'low',16);ctx.fillStyle=textColor;ctx.font='13px Microsoft YaHei';d.forEach((x,i)=>{ctx.fillText(String(x.date).slice(5),xAt(i)-18,270)})}
+function renderChart(d){
+  const c=$('trend'), ctx=c.getContext('2d'), rect=c.getBoundingClientRect(), ratio=window.devicePixelRatio||1;
+  const cssW=Math.max(760,Math.floor(rect.width||1200)), cssH=300;
+  c.width=Math.floor(cssW*ratio); c.height=Math.floor(cssH*ratio); c.style.height=`${cssH}px`;
+  ctx.setTransform(ratio,0,0,ratio,0,0); ctx.clearRect(0,0,cssW,cssH);
+  const textColor=getComputedStyle(document.body).color, axisColor='#6E746B', gridColor='#DCD5C2';
+  ctx.font='14px Microsoft YaHei'; ctx.fillStyle=textColor;
+  if(!d.length){ctx.fillText('无数据：请检查筛选条件或数据文件',24,42);return}
+  const lowMetrics=[['clickRate','#0E61AC','点击率'],['paymentFinishRate','#7FB3E2','付款完成率']], highMetric=['orderSubmitRate','#084C8A','订单提交率'];
+  const left=66,right=cssW-76,top=58,bottom=230,h=bottom-top,plotW=right-left;
+  const lowMax=Math.max(10,Math.ceil(Math.max(...d.flatMap(x=>lowMetrics.map(([k])=>Number(x[k]||0))))/5)*5);
+  const highVals=d.map(x=>Number(x.orderSubmitRate||0)), highMin=Math.max(0,Math.floor((Math.min(...highVals)-5)/5)*5), highMax=Math.min(100,Math.ceil((Math.max(...highVals)+5)/5)*5);
+  const xAt=i=>left+i*(plotW/Math.max(1,d.length-1)), yLow=v=>bottom-Math.min(lowMax,Number(v||0))*h/lowMax, yHigh=v=>bottom-(Number(v||0)-highMin)*h/Math.max(1,highMax-highMin);
+  ctx.font='17px Microsoft YaHei'; ctx.fillStyle=textColor; ctx.fillText(state.grain==='day'?'按日趋势':state.grain==='week'?'按周趋势':'按月趋势',left,28);
+  const legends=[[...highMetric,'右轴'],...lowMetrics.map(x=>[...x,'左轴'])];
+  ctx.font='14px Microsoft YaHei';
+  legends.forEach(([k,color,label,axis],i)=>{const lx=left+170+i*220;ctx.fillStyle=color;ctx.fillRect(lx,16,26,6);ctx.fillStyle=textColor;ctx.fillText(`${label}（${axis}）`,lx+34,23)});
+  ctx.font='13px Microsoft YaHei'; ctx.lineWidth=1; ctx.strokeStyle=gridColor;
+  for(let i=0;i<5;i++){const y=top+i*h/4;ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(right,y);ctx.stroke();ctx.fillStyle=axisColor;ctx.fillText(`${(lowMax-i*lowMax/4).toFixed(0)}%`,18,y+4);ctx.fillStyle='#084C8A';ctx.fillText(`${(highMax-i*(highMax-highMin)/4).toFixed(0)}%`,right+22,y+4)}
+  ctx.fillStyle=axisColor; ctx.fillText('左轴：点击率/付款完成率',left,bottom+32); ctx.fillStyle='#084C8A'; ctx.fillText('右轴：订单提交率',right-126,bottom+32);
+  if(d.length===1){const x=d[0],bars=[...lowMetrics.map(m=>[...m,'low']),[...highMetric,'high']];bars.forEach(([k,color,label,axis],i)=>{const y=axis==='high'?yHigh(x[k]):yLow(x[k]),barH=Math.max(3,bottom-y),px=left+150+i*190;ctx.fillStyle=color;ctx.fillRect(px,y,76,barH);ctx.fillStyle=textColor;ctx.fillText(label,px-2,bottom+54);ctx.fillText(`${Number(x[k]||0).toFixed(2)}%`,px+2,Math.max(42,y-8));});return}
+  function drawLine(metric,axis,labelOffset){const [k,color]=metric,points=d.map((x,i)=>({x:xAt(i),y:axis==='high'?yHigh(x[k]):yLow(x[k]),value:Number(x[k]||0)}));ctx.strokeStyle=color;ctx.lineWidth=3;ctx.beginPath();points.forEach((p,i)=>{i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y)});ctx.stroke();points.forEach(p=>{ctx.fillStyle=color;ctx.beginPath();ctx.arc(p.x,p.y,4,0,Math.PI*2);ctx.fill();ctx.fillStyle=textColor;ctx.font='12px Microsoft YaHei';ctx.fillText(`${p.value.toFixed(2)}%`,p.x-18,p.y+labelOffset)})}
+  drawLine(highMetric,'high',-14); drawLine(lowMetrics[0],'low',-14); drawLine(lowMetrics[1],'low',16);
+  ctx.fillStyle=textColor; ctx.font='13px Microsoft YaHei'; d.forEach((x,i)=>ctx.fillText(String(x.date).slice(5),xAt(i)-16,bottom+54));
+}
 function marketHtml(){const m=ADSTAT_DATA.sideData.marketSummary||{}; if(!m.indexPerformance){return `<div class=empty>${m.status||'待更新行情简述'}。${m.note||'未提供可靠行情来源，本面板不编造行情。'}</div>`} return `<div class=empty>市场情绪：${m.marketEmotion}<br>指数表现：${m.indexPerformance.map(x=>`${x.name} ${x.close} (${Number(x.changePct).toFixed(2)}%)`).join('；')}<br>赚钱效应：${m.moneyEffect}<br>热点标签：${(m.hotTags||[]).join('、')}<br>更新时间：${m.updatedAt}<br>备注：${m.riskNote}</div>`}
 function renderDiagnosis(rows){const s=sum(rows), best=[...rows].sort((a,b)=>b.clickRate-a.clickRate)[0], weak=[...rows].filter(r=>r.popup>=50).sort((a,b)=>a.clickRate-b.clickRate)[0]; $('dailyTitle').textContent=`单日运营诊断 ${state.selectedDate}`; if(!rows.length){$('diagnosis').innerHTML='<div class=empty>无数据：当前筛选没有匹配到当天明细，旧明细已清空。</div>';return} const low=[...rows].filter(r=>tags(r).some(t=>t!=='素材可复用')).slice(0,8); $('diagnosis').innerHTML=`<div class=grid2><div><h2>01 核心指标</h2><div class=cards>${[['广告数',rows.length],['弹出人数',s.popup],['点击人数',s.click],['购买点击人数',s.purchaseClick],['提交订单',s.order],['成交人数',s.deal],['点击率',pct(s.clickRate)],['购买点击率',pct(s.purchaseClickRate)],['订单提交率',pct(s.orderSubmitRate)],['付款完成率',pct(s.paymentFinishRate)],['最高ID',Math.max(...rows.map(r=>+r.adId))],['最低ID',Math.min(...rows.map(r=>+r.adId))],['有效广告',rows.filter(r=>r.popup>=50).length],['预警线','点击率<2%'],['素材分类',ADSTAT_DATA.sideData.ocr.status],['OCR覆盖','0%'],['行情贴合',ADSTAT_DATA.sideData.marketSummary.status],['最佳素材',best?best.adId:'-'],['弱项素材',weak?weak.adId:'-']].map(x=>`<div class=card><span>${x[0]}</span><strong>${x[1]}</strong></div>`).join('')}</div></div><div><h2>02 行情简述</h2>${marketHtml()}<h2>03 漏斗与素材池</h2><div class=empty>弹出 ${fmt(s.popup)} -> 点击 ${fmt(s.click)} -> 购买点击 ${fmt(s.purchaseClick)} -> 提交订单 ${fmt(s.order)} -> 成交 ${fmt(s.deal)}。同人群替换仅基于 audienceKey 完全一致；样本不足已提示风险。</div></div></div><h2>04 诊断与低效广告</h2><div class=table-wrap><table><tr><th>低效广告ID</th><th class=num>点击率</th><th>原图</th><th>建议替换图</th><th>参考ID</th><th>样本量提示</th><th>低效原因与替换分析</th><th>创新</th></tr>${low.map(r=>{const same=rows.filter(x=>x.audienceKey===r.audienceKey&&x.adId!==r.adId&&x.clickRate>r.clickRate).sort((a,b)=>b.clickRate-a.clickRate)[0];return `<tr><td>${r.adId}</td><td class=num>${pct(r.clickRate)}</td><td><img class=thumb src="${r.image}" onerror="this.alt='图片加载失败'"></td><td>${same?`<img class=thumb src="${same.image}">`:'无同人群更优素材'}</td><td>${same?same.adId:'-'}</td><td>${r.popup<50?'样本不足':'样本充足'}</td><td>${tags(r).join('、')}；${same?'同 audienceKey 可参考替换。':'未找到同人群可直接替换素材。'}</td><td><button onclick="openCreative('${r.adId}')">创新</button></td></tr>`}).join('')}</table></div><h2>05 明细数据</h2>`}
 function repairOcrText(v){return String(v??'').replace(/\s+/g,' ').replace(/([\u4e00-\u9fff])\s+(?=[\u4e00-\u9fff])/g,'$1').replace(/([\u4e00-\u9fff])\s+(?=[0-9A-Za-z])/g,'$1').replace(/([0-9A-Za-z])\s+(?=[\u4e00-\u9fff])/g,'$1').replace(/\s+([，。！？；：、）》])/g,'$1').replace(/([《（])\s+/g,'$1').replace(/\s*\/\s*/g,'/').replaceAll('短王','短线王').trim()}
@@ -2331,7 +2356,7 @@ function exportCsv(){const rows=filtered();const header=Object.keys(rows[0]||{})
 function copyDay(){const rows=filtered().filter(r=>r.date===state.selectedDate),s=sum(rows);navigator.clipboard.writeText(`日期：${state.selectedDate}\n广告数：${rows.length}\n弹出：${s.popup}\n点击：${s.click}\n订单：${s.order}\n成交：${s.deal}\n点击率：${pct(s.clickRate)}\n策略：优先处理高曝光低点击、下单好但成交弱素材。`).then(()=>alert('当天复盘已复制'))}
 async function callHelper(path){const payload={startDate:$('startDate').value,endDate:$('endDate').value,channel:state.channel,projectName:state.projectName,groupId:state.groupId};$('status').textContent=`正在连接本地助手，准备更新 ${payload.projectName} ${payload.startDate} 至 ${payload.endDate}...`;try{const r=await fetch(`http://127.0.0.1:5088${path}`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)});const j=await r.json();$('status').textContent=`本地助手：${j.status?.message||j.error||'完成'}；请刷新页面查看最新结果。`;if(!j.ok) alert(j.status?.message||j.error||'本地助手执行失败')}catch(e){$('status').textContent='本地助手未启动或 5088 端口不可用';alert('本地助手未启动：请运行 scripts/adstat-local-helper.ps1，并保持后台浏览器登录。')}}
 function resetDetailLimit(){state.detailLimit=50}
-$('project').innerHTML=PROJECTS.map(p=>`<option value="${p.name}" data-group-id="${p.groupId}" ${p.name===state.projectName?'selected':''}>${p.name}</option>`).join('');$('project').onchange=e=>{const opt=e.target.selectedOptions[0];state.projectName=e.target.value;state.groupId=String(opt.dataset.groupId||'');ADSTAT_DATA.project.name=state.projectName;ADSTAT_DATA.project.groupId=state.groupId;render()};['channel','sample','dateType','search'].forEach(id=>$(id).addEventListener('input',e=>{state[id]=id==='sample'?Number(e.target.value):e.target.value;resetDetailLimit();render()}));$('theme').value=localStorage.getItem('adstat-theme')||'simple';document.body.dataset.theme=$('theme').value;$('theme').onchange=e=>{document.body.dataset.theme=e.target.value;localStorage.setItem('adstat-theme',e.target.value)};$('diagnosisDate').onchange=e=>{state.selectedDate=e.target.value;render()};$('detailDate').onchange=e=>{state.detailDate=e.target.value;resetDetailLimit();render()};$('detailChannel').onchange=e=>{state.detailChannel=e.target.value;resetDetailLimit();render()};$('detailAudience').oninput=e=>{state.detailAudience=e.target.value.trim();resetDetailLimit();render()};$('clearDetailFilters').onclick=()=>{state.detailDate='ALL';state.detailChannel='ALL';state.detailAudience='';$('detailAudience').value='';resetDetailLimit();render()};document.querySelectorAll('[data-grain]').forEach(b=>b.onclick=()=>{state.grain=b.dataset.grain;render()});$('exportData').onclick=exportCsv;$('exportChart').onclick=()=>{const a=document.createElement('a');a.href=$('trend').toDataURL('image/png');a.download='trend.png';a.click()};$('updateLatest').onclick=()=>callHelper('/update-latest');$('makePpt').onclick=()=>{if(ADSTAT_DATA.sideData.ppt.file){location.href=ADSTAT_DATA.sideData.ppt.file}else{alert('PPT生成失败：未配置用户模板或本地助手。')}};$('savePpt').onclick=()=>{if(ADSTAT_DATA.sideData.ppt.file){const a=document.createElement('a');a.href=ADSTAT_DATA.sideData.ppt.file;a.download='短线王续费-广告复盘-2026-06-22.pptx';a.click()}else{alert('另存为PPT不可用：尚未生成 pptx。')}};$('copyAll').onclick=copyDay;$('closeDrawer').onclick=()=>$('drawer').classList.remove('open');render();
+$('project').innerHTML=PROJECTS.map(p=>`<option value="${p.name}" data-group-id="${p.groupId}" ${p.name===state.projectName?'selected':''}>${p.name}</option>`).join('');$('project').onchange=e=>{const opt=e.target.selectedOptions[0];state.projectName=e.target.value;state.groupId=String(opt.dataset.groupId||'');ADSTAT_DATA.project.name=state.projectName;ADSTAT_DATA.project.groupId=state.groupId;render()};['channel','sample','dateType','search'].forEach(id=>$(id).addEventListener('input',e=>{state[id]=id==='sample'?Number(e.target.value):e.target.value;resetDetailLimit();render()}));$('theme').value=localStorage.getItem('adstat-theme')||'simple';document.body.dataset.theme=$('theme').value;$('theme').onchange=e=>{document.body.dataset.theme=e.target.value;localStorage.setItem('adstat-theme',e.target.value)};$('diagnosisDate').onchange=e=>{state.selectedDate=e.target.value;render()};$('detailDate').onchange=e=>{state.detailDate=e.target.value;resetDetailLimit();render()};$('detailChannel').onchange=e=>{state.detailChannel=e.target.value;resetDetailLimit();render()};$('detailAudience').oninput=e=>{state.detailAudience=e.target.value.trim();resetDetailLimit();render()};$('clearDetailFilters').onclick=()=>{state.detailDate='ALL';state.detailChannel='ALL';state.detailAudience='';$('detailAudience').value='';resetDetailLimit();render()};document.querySelectorAll('[data-grain]').forEach(b=>b.onclick=()=>{state.grain=b.dataset.grain;render()});$('exportData').onclick=exportCsv;$('exportChart').onclick=()=>{const a=document.createElement('a');a.href=$('trend').toDataURL('image/png');a.download='trend.png';a.click()};$('updateLatest').onclick=()=>callHelper('/update-latest');$('makePpt').onclick=()=>{if(ADSTAT_DATA.sideData.ppt.file){location.href=ADSTAT_DATA.sideData.ppt.file}else{alert('PPT生成失败：未配置用户模板或本地助手。')}};$('savePpt').onclick=()=>{if(ADSTAT_DATA.sideData.ppt.file){const a=document.createElement('a');a.href=ADSTAT_DATA.sideData.ppt.file;a.download='短线王续费-广告复盘-2026-06-22.pptx';a.click()}else{alert('另存为PPT不可用：尚未生成 pptx。')}};$('copyAll').onclick=copyDay;$('closeDrawer').onclick=()=>$('drawer').classList.remove('open');let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(render,120)});render();
 </script>
 </body>
 </html>
