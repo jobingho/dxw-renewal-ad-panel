@@ -664,3 +664,42 @@ th {
     font-size: 15px !important;
   }
 }
+
+/* Sidebar submenu behavior: default to first-level navigation, expand on demand. */
+.side-rail .nav-parent {
+  cursor: pointer !important;
+}
+
+.side-rail .nav-parent::after {
+  content: "" !important;
+  width: 7px !important;
+  height: 7px !important;
+  margin-left: auto !important;
+  border-right: 2px solid currentColor !important;
+  border-bottom: 2px solid currentColor !important;
+  transform: rotate(45deg) !important;
+  opacity: .72 !important;
+  transition: transform .18s ease !important;
+  display: block !important;
+}
+
+.side-rail .nav-parent.expanded::after {
+  transform: rotate(225deg) translate(-2px, -2px) !important;
+}
+
+.side-rail .nav-subgroup {
+  display: none !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.side-rail .nav-subgroup.open {
+  display: grid !important;
+  max-height: 260px !important;
+  margin: 0 0 2px !important;
+  padding-top: 2px !important;
+  padding-bottom: 6px !important;
+}
