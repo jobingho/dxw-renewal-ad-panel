@@ -1,5 +1,5 @@
 (function () {
-  var BLUE_VERSION = 'home-layout-20260713-06';
+  var BLUE_VERSION = 'home-layout-20260713-07';
 
   function keepBlueThemeLast() {
     var orange = document.getElementById('orange-sidebar-lock-link');
@@ -49,7 +49,7 @@
   function forceBlueBrand() {
     var brand = document.querySelector('.side-brand');
     if (!brand) return;
-    brand.innerHTML = '<span class="blue-brand-mark" aria-hidden="true"></span><span class="blue-brand-copy"><strong>Jobingho &#x7684;&#x5de5;&#x4f5c;&#x7a7a;&#x95f4;</strong><small>' + timeGreeting() + '&#xff01;&#x65b0;&#x7684;&#x4e00;&#x5929;&#x52aa;&#x529b;&#x5de5;&#x4f5c;</small></span>';
+    brand.innerHTML = '<span class="blue-brand-mark" aria-hidden="true"><span class="blue-brand-fish">&#x1f41f;</span><span class="blue-brand-bubbles"></span></span><span class="blue-brand-copy"><strong>Jobingho &#x7684;&#x5de5;&#x4f5c;&#x7a7a;&#x95f4;</strong><small>' + timeGreeting() + '&#xff01;&#x65b0;&#x7684;&#x4e00;&#x5929;&#x52aa;&#x529b;&#x5de5;&#x4f5c;</small></span>';
   }
 
   function updateBrandGreeting() {
@@ -89,7 +89,7 @@
     if (rail.dataset.blueFullNav === '1') { forceBlueBrand(); return; }
     rail.dataset.blueFullNav = '1';
     if (brand) {
-      brand.innerHTML = '<span class="blue-brand-mark" aria-hidden="true"></span><span class="blue-brand-copy"><strong>Jobingho &#x7684;&#x5de5;&#x4f5c;&#x7a7a;&#x95f4;</strong><small>' + timeGreeting() + '&#xff01;&#x65b0;&#x7684;&#x4e00;&#x5929;&#x52aa;&#x529b;&#x5de5;&#x4f5c;</small></span>';
+      brand.innerHTML = '<span class="blue-brand-mark" aria-hidden="true"><span class="blue-brand-fish">&#x1f41f;</span><span class="blue-brand-bubbles"></span></span><span class="blue-brand-copy"><strong>Jobingho &#x7684;&#x5de5;&#x4f5c;&#x7a7a;&#x95f4;</strong><small>' + timeGreeting() + '&#xff01;&#x65b0;&#x7684;&#x4e00;&#x5929;&#x52aa;&#x529b;&#x5de5;&#x4f5c;</small></span>';
     }
     Array.prototype.slice.call(rail.children).forEach(function (child) {
       if (child !== brand) child.remove();

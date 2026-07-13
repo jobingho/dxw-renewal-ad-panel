@@ -2310,3 +2310,68 @@ html body.blue-glass-ui #view-workbench .mini-bar {
 html body.blue-glass-ui #view-workbench .blue-home-news .blue-home-more {
   cursor: pointer !important;
 }
+/* Brand fish v7: animated fish avatar. */
+html body.blue-glass-ui .blue-brand-mark {
+  display: grid !important;
+  place-items: center !important;
+  position: relative !important;
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 13px !important;
+  background: linear-gradient(145deg, #2bd3ff 0%, #1888ee 56%, #0a5fd2 100%) !important;
+  box-shadow: 0 12px 24px rgba(22,119,255,.26), inset 0 1px 0 rgba(255,255,255,.36) !important;
+  overflow: hidden !important;
+}
+
+html body.blue-glass-ui .blue-brand-mark::before,
+html body.blue-glass-ui .blue-brand-mark::after {
+  content: none !important;
+}
+
+html body.blue-glass-ui .blue-brand-fish {
+  position: relative !important;
+  z-index: 2 !important;
+  display: inline-block !important;
+  font-size: 25px !important;
+  line-height: 1 !important;
+  filter: drop-shadow(0 3px 5px rgba(4,55,132,.26)) !important;
+  transform-origin: 50% 55% !important;
+  animation: blueFishSwim 2.8s ease-in-out infinite !important;
+}
+
+html body.blue-glass-ui .blue-brand-bubbles::before,
+html body.blue-glass-ui .blue-brand-bubbles::after {
+  content: "" !important;
+  position: absolute !important;
+  border-radius: 50% !important;
+  background: rgba(255,255,255,.78) !important;
+  z-index: 1 !important;
+  animation: blueFishBubble 2.4s ease-in-out infinite !important;
+}
+
+html body.blue-glass-ui .blue-brand-bubbles::before {
+  width: 5px !important;
+  height: 5px !important;
+  left: 9px !important;
+  top: 23px !important;
+}
+
+html body.blue-glass-ui .blue-brand-bubbles::after {
+  width: 3px !important;
+  height: 3px !important;
+  left: 13px !important;
+  top: 14px !important;
+  animation-delay: .55s !important;
+}
+
+@keyframes blueFishSwim {
+  0%, 100% { transform: translateX(-1px) translateY(0) rotate(-8deg) scaleX(-1); }
+  45% { transform: translateX(3px) translateY(-2px) rotate(4deg) scaleX(-1); }
+  70% { transform: translateX(1px) translateY(1px) rotate(-3deg) scaleX(-1); }
+}
+
+@keyframes blueFishBubble {
+  0% { opacity: 0; transform: translateY(7px) scale(.65); }
+  25% { opacity: .85; }
+  100% { opacity: 0; transform: translateY(-10px) scale(1.2); }
+}
