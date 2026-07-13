@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --brand: #1677FF !important;
   --brand-hover: #0D5ECD !important;
   --brand-light: #69b1ff !important;
@@ -1920,4 +1920,204 @@ html body.blue-glass-ui #view-dailyReport .dxw-daily-refresh-progress{
 }
 html body.blue-glass-ui #view-dailyReport .daily-report-head .dxw-daily-refresh-progress{
   grid-column:1 / 2;
+}
+
+/* Workbench layout: match compact operations dashboard reference. */
+html body.blue-glass-ui #view-workbench .placeholder-page {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.7fr) minmax(280px, .9fr) !important;
+  grid-template-areas:
+    "head head"
+    "metrics metrics"
+    "chart todo"
+    "news calendar" !important;
+  gap: 16px !important;
+  padding: 18px !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html body.blue-glass-ui #view-workbench .placeholder-head {
+  grid-area: head !important;
+  min-height: 92px !important;
+  padding: 18px 22px !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  border-radius: 8px !important;
+  background: linear-gradient(105deg, rgba(255,255,255,.82), rgba(218,235,255,.88) 48%, rgba(93,163,235,.92)) !important;
+}
+
+html body.blue-glass-ui #view-workbench .placeholder-title {
+  font-size: 24px !important;
+  line-height: 30px !important;
+  margin: 0 0 8px !important;
+}
+
+html body.blue-glass-ui #view-workbench .settings-note {
+  font-size: 13px !important;
+}
+
+html body.blue-glass-ui #view-workbench .workbench-head-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+html body.blue-glass-ui #view-workbench .workbench-project-label {
+  width: 188px !important;
+  height: 36px !important;
+  padding: 0 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  border: 1px solid rgba(245,126,32,.42) !important;
+  border-radius: 8px !important;
+  background: rgba(255,255,255,.88) !important;
+  color: #f0781e !important;
+  font-weight: 700 !important;
+}
+
+html body.blue-glass-ui #view-workbench .workbench-project-label select {
+  min-width: 0 !important;
+  flex: 1 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: #f0781e !important;
+  font-weight: 700 !important;
+  padding: 0 !important;
+}
+
+html body.blue-glass-ui #view-workbench .placeholder-state {
+  height: 36px !important;
+  padding: 0 14px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  border-radius: 999px !important;
+  background: rgba(22,119,255,.10) !important;
+  color: #1677ff !important;
+  border: 1px solid rgba(22,119,255,.20) !important;
+  font-size: 13px !important;
+}
+
+html body.blue-glass-ui #view-workbench .workbench-hero,
+html body.blue-glass-ui #view-workbench .placeholder-grid {
+  display: contents !important;
+}
+
+html body.blue-glass-ui #view-workbench .metric-grid {
+  grid-area: metrics !important;
+  display: grid !important;
+  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+}
+
+html body.blue-glass-ui #view-workbench .metric-card {
+  min-height: 92px !important;
+  padding: 12px 16px !important;
+  border-radius: 6px !important;
+  background: rgba(255,255,255,.82) !important;
+}
+
+html body.blue-glass-ui #view-workbench .metric-card::before {
+  font-size: 16px !important;
+  margin-bottom: 6px !important;
+}
+
+html body.blue-glass-ui #view-workbench .metric-value {
+  font-size: 30px !important;
+  line-height: 36px !important;
+}
+
+html body.blue-glass-ui #view-workbench .workbench-chart {
+  grid-area: chart !important;
+  min-height: 190px !important;
+  padding: 14px 16px !important;
+  border-radius: 6px !important;
+}
+
+html body.blue-glass-ui #view-workbench .mini-bars {
+  min-height: 125px !important;
+  align-items: end !important;
+}
+
+html body.blue-glass-ui #view-workbench .mini-bar {
+  max-height: 112px !important;
+}
+
+html body.blue-glass-ui #view-workbench .todo-entry {
+  grid-area: todo !important;
+  min-height: 190px !important;
+}
+
+html body.blue-glass-ui #view-workbench .blue-home-news {
+  grid-area: news !important;
+}
+
+html body.blue-glass-ui #view-workbench .blue-home-calendar {
+  grid-area: calendar !important;
+  min-height: 220px !important;
+}
+
+html body.blue-glass-ui #view-workbench .blue-home-report {
+  display: none !important;
+}
+
+html body.blue-glass-ui #view-workbench .placeholder-card {
+  border-radius: 6px !important;
+  padding: 16px !important;
+}
+
+html body.blue-glass-ui #view-workbench .todo-preview {
+  display: grid !important;
+  gap: 10px !important;
+  margin-top: 12px !important;
+}
+
+html body.blue-glass-ui #view-workbench .todo-preview-item {
+  min-height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 8px 10px !important;
+  border-radius: 6px !important;
+  background: rgba(255,255,255,.66) !important;
+  border: 1px solid rgba(22,119,255,.08) !important;
+}
+
+html body.blue-glass-ui #view-workbench .blue-home-calendar .mini-calendar {
+  display: grid !important;
+  grid-template-columns: repeat(7, minmax(22px, 1fr)) !important;
+  gap: 7px !important;
+  margin-top: 12px !important;
+  text-align: center !important;
+  font-size: 12px !important;
+  color: #31557d !important;
+}
+
+html body.blue-glass-ui #view-workbench .blue-home-calendar .mini-calendar span {
+  min-height: 20px !important;
+  line-height: 20px !important;
+  border-radius: 4px !important;
+}
+
+html body.blue-glass-ui #view-workbench .blue-home-calendar .mini-calendar .today {
+  background: rgba(22,119,255,.12) !important;
+  color: #1677ff !important;
+  font-weight: 800 !important;
+}
+
+html body.blue-glass-ui #view-workbench .blue-home-calendar .mini-calendar .rest {
+  color: #1677ff !important;
+}
+
+@media (max-width: 1180px) {
+  html body.blue-glass-ui #view-workbench .placeholder-page {
+    grid-template-columns: 1fr !important;
+    grid-template-areas: "head" "metrics" "chart" "todo" "news" "calendar" !important;
+  }
+  html body.blue-glass-ui #view-workbench .metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
 }

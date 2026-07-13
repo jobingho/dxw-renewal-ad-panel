@@ -1,5 +1,5 @@
 (function () {
-  var BLUE_VERSION = 'theme-stable-20260713-03';
+  var BLUE_VERSION = 'home-layout-20260713-01';
 
   function keepBlueThemeLast() {
     var orange = document.getElementById('orange-sidebar-lock-link');
@@ -197,15 +197,17 @@
     var days = new Date(y, m + 1, 0).getDate();
     var cells = '';
     for (var d = 1; d <= days; d++) {
-      var cls = d === today.getDate() ? ' style="font-weight:800;color:#1677ff"' : '';
-      cells += '<span' + cls + '>' + d + '</span>';
+      var isToday = d === today.getDate();
+      var isRest = [4, 5, 11, 18, 19, 25].indexOf(d) !== -1;
+      var cls = (isToday ? ' today' : '') + (isRest ? ' rest' : '');
+      cells += '<span class="' + cls + '">' + d + (isRest ? '<small>&#x4f11;</small>' : '') + '</span>';
     }
     grid.dataset.blueRestored = '1';
     grid.innerHTML =
-      '<button class="placeholder-card todo-entry" id="openTodo" type="button"><span class="module-icon ico-project"></span><h3>&#x5f85;&#x529e;&#x6e05;&#x5355;</h3><p>&#x65b0;&#x589e;&#x3001;&#x7f16;&#x8f91;&#x3001;&#x7c98;&#x8d34;&#x5bfc;&#x5165;&#x548c;&#x5b8c;&#x6210;&#x52fe;&#x9009;&#xff0c;&#x5185;&#x5bb9;&#x4fdd;&#x5b58;&#x5728;&#x5f53;&#x524d;&#x6d4f;&#x89c8;&#x5668;&#x3002;</p><div class="todo-preview" id="todoPreview"></div></button>' +
-      '<div class="placeholder-card"><span class="module-icon ico-news"></span><h3>&#x8d44;&#x8baf;&#x5feb;&#x62a5;</h3><p>&#x5c55;&#x793a;&#x6700;&#x65b0;&#x6293;&#x53d6;&#x7684;&#x8fd0;&#x8425;&#x8d44;&#x8baf;&#x6458;&#x8981;&#xff0c;&#x70b9;&#x51fb;&#x5de6;&#x4fa7;&#x5165;&#x53e3;&#x53ef;&#x67e5;&#x770b;&#x5b8c;&#x6574;&#x5206;&#x7c7b;&#x3002;</p><div class="todo-preview">' + newsHtml + '</div></div>' +
-      '<button class="placeholder-card" type="button" data-view-nav="activityCalendar"><span class="module-icon ico-report"></span><h3>&#x6d3b;&#x52a8;&#x65e5;&#x5386;</h3><p>' + y + '&#x5e74;' + String(m + 1).padStart(2, '0') + '&#x6708;&#x6392;&#x671f;&#x9884;&#x89c8;&#xff0c;&#x5f53;&#x5929;&#x5df2;&#x9ad8;&#x4eae;&#x3002;</p><div class="mini-calendar" style="display:grid;grid-template-columns:repeat(7,1fr);gap:5px;font-size:12px;color:#31557d">' + cells + '</div></button>' +
-      '<div class="placeholder-card"><span class="module-icon ico-data"></span><h3>&#x62a5;&#x544a;&#x5165;&#x53e3;</h3><p>&#x65e5;&#x62a5;&#x3001;&#x5468;&#x62a5;&#x5185;&#x5bb9;&#x5728;&#x5de6;&#x4fa7;&#x201c;&#x6570;&#x636e;&#x7edf;&#x8ba1;&#x201d;&#x4e0b;&#xff0c;&#x53ef;&#x76f4;&#x63a5;&#x6253;&#x5f00;&#x3002;</p></div>';
+      '<button class="placeholder-card todo-entry blue-home-todo" id="openTodo" type="button"><span class="module-icon ico-project"></span><h3>&#x5f85;&#x529e;&#x4e8b;&#x9879;<a class="blue-home-more" href="javascript:void(0)">&#x66f4;&#x591a;</a></h3><p>&#x65b0;&#x589e;&#x3001;&#x7f16;&#x8f91;&#x3001;&#x7c98;&#x8d34;&#x5bfc;&#x5165;&#x548c;&#x5b8c;&#x6210;&#x52fe;&#x9009;&#xff0c;&#x5185;&#x5bb9;&#x4fdd;&#x5b58;&#x5728;&#x5f53;&#x524d;&#x6d4f;&#x89c8;&#x5668;&#x3002;</p><div class="todo-preview" id="todoPreview"></div></button>' +
+      '<div class="placeholder-card blue-home-news"><span class="module-icon ico-news"></span><h3>&#x8d44;&#x8baf;&#x5feb;&#x62a5;<a class="blue-home-more" href="javascript:void(0)">&#x66f4;&#x591a;</a></h3><p>&#x5c55;&#x793a;&#x6700;&#x65b0;&#x6293;&#x53d6;&#x7684;&#x8fd0;&#x8425;&#x8d44;&#x8baf;&#x6458;&#x8981;&#xff0c;&#x70b9;&#x51fb;&#x5de6;&#x4fa7;&#x5165;&#x53e3;&#x53ef;&#x67e5;&#x770b;&#x5b8c;&#x6574;&#x5206;&#x7c7b;&#x3002;</p><div class="todo-preview">' + newsHtml + '</div></div>' +
+      '<button class="placeholder-card blue-home-calendar" type="button" data-view-nav="activityCalendar"><span class="module-icon ico-report"></span><h3>&#x6d3b;&#x52a8;&#x65e5;&#x5386;</h3><p>' + y + '&#x5e74;' + String(m + 1).padStart(2, '0') + '&#x6708;&#x6392;&#x671f;&#x9884;&#x89c8;&#xff0c;&#x5f53;&#x5929;&#x5df2;&#x9ad8;&#x4eae;&#x3002;</p><div class="mini-calendar" style="display:grid;grid-template-columns:repeat(7,1fr);gap:5px;font-size:12px;color:#31557d">' + cells + '</div></button>' +
+      '<div class="placeholder-card blue-home-report"><span class="module-icon ico-data"></span><h3>&#x62a5;&#x544a;&#x5165;&#x53e3;</h3><p>&#x65e5;&#x62a5;&#x3001;&#x5468;&#x62a5;&#x5185;&#x5bb9;&#x5728;&#x5de6;&#x4fa7;&#x201c;&#x6570;&#x636e;&#x7edf;&#x8ba1;&#x201d;&#x4e0b;&#xff0c;&#x53ef;&#x76f4;&#x63a5;&#x6253;&#x5f00;&#x3002;</p></div>';
     var calCard = grid.querySelector('[data-view-nav="activityCalendar"]');
     if (calCard) calCard.addEventListener('click', function () { openBlueView('activityCalendar'); });
     if (typeof window.hydrateIcons === 'function') {
