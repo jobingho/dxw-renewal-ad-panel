@@ -1,5 +1,5 @@
 (function () {
-  var BLUE_VERSION = 'home-layout-20260713-01';
+  var BLUE_VERSION = 'home-layout-20260713-02';
 
   function keepBlueThemeLast() {
     var orange = document.getElementById('orange-sidebar-lock-link');
@@ -195,10 +195,15 @@
     var y = today.getFullYear();
     var m = today.getMonth();
     var days = new Date(y, m + 1, 0).getDate();
-    var cells = '';
+    var weekLabels = ['周一','周二','周三','周四','周五','周六','周日'];
+    var firstDay = new Date(y, m, 1);
+    var leading = (firstDay.getDay() + 6) % 7;
+    var cells = weekLabels.map(function (label) { return '<b>' + label + '</b>'; }).join('');
+    for (var i = 0; i < leading; i++) cells += '<span class="muted"></span>';
     for (var d = 1; d <= days; d++) {
+      var dayOfWeek = new Date(y, m, d).getDay();
       var isToday = d === today.getDate();
-      var isRest = [4, 5, 11, 18, 19, 25].indexOf(d) !== -1;
+      var isRest = dayOfWeek === 0 || dayOfWeek === 6;
       var cls = (isToday ? ' today' : '') + (isRest ? ' rest' : '');
       cells += '<span class="' + cls + '">' + d + (isRest ? '<small>&#x4f11;</small>' : '') + '</span>';
     }

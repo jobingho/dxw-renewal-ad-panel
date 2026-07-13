@@ -2121,3 +2121,61 @@ html body.blue-glass-ui #view-workbench .blue-home-calendar .mini-calendar .rest
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 }
+/* Workbench polish: separate card actions and align mini calendar by real weekdays. */
+html body.blue-glass-ui #view-workbench .placeholder-card h3 {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  width: 100% !important;
+  margin: 0 0 10px !important;
+}
+
+html body.blue-glass-ui #view-workbench .blue-home-more {
+  margin-left: auto !important;
+  flex: 0 0 auto !important;
+  font-size: 12px !important;
+  line-height: 18px !important;
+  color: #1677ff !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+}
+
+html body.blue-glass-ui #view-workbench .blue-home-calendar h3 {
+  justify-content: center !important;
+}
+
+html body.blue-glass-ui #view-workbench .blue-home-calendar .mini-calendar {
+  grid-template-columns: repeat(7, minmax(24px, 1fr)) !important;
+  gap: 6px 8px !important;
+  align-items: center !important;
+}
+
+html body.blue-glass-ui #view-workbench .blue-home-calendar .mini-calendar b {
+  min-height: 20px !important;
+  line-height: 20px !important;
+  color: #123f72 !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+}
+
+html body.blue-glass-ui #view-workbench .blue-home-calendar .mini-calendar span {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 2px !important;
+  min-height: 23px !important;
+  padding: 0 2px !important;
+}
+
+html body.blue-glass-ui #view-workbench .blue-home-calendar .mini-calendar span.muted {
+  visibility: hidden !important;
+}
+
+html body.blue-glass-ui #view-workbench .blue-home-calendar .mini-calendar small {
+  font-size: 10px !important;
+  line-height: 1 !important;
+  color: #1677ff !important;
+  font-weight: 700 !important;
+}
