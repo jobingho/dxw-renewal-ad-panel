@@ -2179,3 +2179,73 @@ html body.blue-glass-ui #view-workbench .blue-home-calendar .mini-calendar small
   color: #1677ff !important;
   font-weight: 700 !important;
 }
+/* Workbench polish v3: blue selector, clickable todo, chart axis, full mini calendar. */
+html body.blue-glass-ui #view-workbench .workbench-project-label {
+  border-color: rgba(22,119,255,.35) !important;
+  color: #1677ff !important;
+  background: rgba(255,255,255,.90) !important;
+}
+
+html body.blue-glass-ui #view-workbench .workbench-project-label select {
+  color: #1677ff !important;
+}
+
+html body.blue-glass-ui #view-workbench .workbench-chart {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+html body.blue-glass-ui #view-workbench .workbench-chart::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 18px !important;
+  right: 18px !important;
+  bottom: 35px !important;
+  height: 1px !important;
+  border-bottom: 1px dashed rgba(125, 247, 255, .28) !important;
+  z-index: 1 !important;
+}
+
+html body.blue-glass-ui #view-workbench .mini-bars {
+  position: relative !important;
+  z-index: 2 !important;
+  padding-bottom: 4px !important;
+}
+
+html body.blue-glass-ui #view-workbench .mini-bar-col {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+html body.blue-glass-ui #view-workbench .blue-home-calendar {
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 14px 16px 12px !important;
+  overflow: visible !important;
+}
+
+html body.blue-glass-ui #view-workbench .blue-home-calendar p {
+  margin: 6px 0 8px !important;
+  font-size: 12px !important;
+  line-height: 18px !important;
+}
+
+html body.blue-glass-ui #view-workbench .blue-home-calendar .mini-calendar {
+  gap: 3px 7px !important;
+  margin-top: 8px !important;
+}
+
+html body.blue-glass-ui #view-workbench .blue-home-calendar .mini-calendar b,
+html body.blue-glass-ui #view-workbench .blue-home-calendar .mini-calendar span {
+  min-height: 18px !important;
+  line-height: 18px !important;
+  font-size: 12px !important;
+}
+
+html body.blue-glass-ui #view-workbench .blue-home-calendar .mini-calendar small {
+  font-size: 9px !important;
+}
+
+html body.blue-glass-ui #view-workbench .todo-entry {
+  cursor: pointer !important;
+}

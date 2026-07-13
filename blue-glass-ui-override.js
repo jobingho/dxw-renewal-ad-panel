@@ -1,5 +1,5 @@
 (function () {
-  var BLUE_VERSION = 'home-layout-20260713-02';
+  var BLUE_VERSION = 'home-layout-20260713-04';
 
   function keepBlueThemeLast() {
     var orange = document.getElementById('orange-sidebar-lock-link');
@@ -215,6 +215,13 @@
       '<div class="placeholder-card blue-home-report"><span class="module-icon ico-data"></span><h3>&#x62a5;&#x544a;&#x5165;&#x53e3;</h3><p>&#x65e5;&#x62a5;&#x3001;&#x5468;&#x62a5;&#x5185;&#x5bb9;&#x5728;&#x5de6;&#x4fa7;&#x201c;&#x6570;&#x636e;&#x7edf;&#x8ba1;&#x201d;&#x4e0b;&#xff0c;&#x53ef;&#x76f4;&#x63a5;&#x6253;&#x5f00;&#x3002;</p></div>';
     var calCard = grid.querySelector('[data-view-nav="activityCalendar"]');
     if (calCard) calCard.addEventListener('click', function () { openBlueView('activityCalendar'); });
+    var todoCard = document.getElementById('openTodo');
+    if (todoCard) {
+      todoCard.addEventListener('click', function (event) {
+        event.preventDefault();
+        if (typeof window.openTodoPanel === 'function') window.openTodoPanel();
+      });
+    }
     if (typeof window.hydrateIcons === 'function') {
       try { window.hydrateIcons(); } catch (e) {}
     }
