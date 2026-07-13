@@ -2249,3 +2249,64 @@ html body.blue-glass-ui #view-workbench .blue-home-calendar .mini-calendar small
 html body.blue-glass-ui #view-workbench .todo-entry {
   cursor: pointer !important;
 }
+/* Workbench polish v5: fish avatar, clearer chart axis, news jump. */
+html body.blue-glass-ui .blue-brand-mark {
+  position: relative !important;
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 12px !important;
+  background: linear-gradient(145deg, #22c7f3, #126edb) !important;
+  box-shadow: 0 12px 24px rgba(22,119,255,.26) !important;
+  overflow: hidden !important;
+}
+
+html body.blue-glass-ui .blue-brand-mark::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 8px !important;
+  top: 9px !important;
+  width: 25px !important;
+  height: 18px !important;
+  background: #fff !important;
+  border-radius: 65% 35% 48% 52% !important;
+  transform: rotate(-22deg) skewX(-10deg) !important;
+  clip-path: polygon(0 50%, 20% 18%, 78% 0, 100% 42%, 74% 76%, 18% 84%) !important;
+  opacity: .96 !important;
+}
+
+html body.blue-glass-ui .blue-brand-mark::after {
+  content: "" !important;
+  position: absolute !important;
+  right: 8px !important;
+  top: 15px !important;
+  width: 4px !important;
+  height: 4px !important;
+  background: #1278d8 !important;
+  border-radius: 50% !important;
+  box-shadow: -20px 10px 0 -1px rgba(255,255,255,.72), -14px 16px 0 -2px rgba(255,255,255,.60) !important;
+}
+
+html body.blue-glass-ui #view-workbench .workbench-chart::after {
+  bottom: 34px !important;
+  border-bottom: 2px solid rgba(125,247,255,.45) !important;
+  box-shadow: 0 -54px 0 rgba(125,247,255,.08), 0 -108px 0 rgba(125,247,255,.08) !important;
+}
+
+html body.blue-glass-ui #view-workbench .mini-bar-col::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  bottom: 47px !important;
+  width: 1px !important;
+  height: 118px !important;
+  border-left: 1px dashed rgba(125,247,255,.16) !important;
+  transform: translateX(-50%) !important;
+}
+
+html body.blue-glass-ui #view-workbench .mini-bar {
+  min-height: 28px !important;
+}
+
+html body.blue-glass-ui #view-workbench .blue-home-news .blue-home-more {
+  cursor: pointer !important;
+}

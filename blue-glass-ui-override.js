@@ -1,5 +1,5 @@
 (function () {
-  var BLUE_VERSION = 'home-layout-20260713-04';
+  var BLUE_VERSION = 'home-layout-20260713-06';
 
   function keepBlueThemeLast() {
     var orange = document.getElementById('orange-sidebar-lock-link');
@@ -37,13 +37,59 @@
     return '<div class="nav-subitem" data-view-nav="' + view + '"><span class="sub-ico ico-data"></span><span>' + label + '</span></div>';
   }
 
+
+  function timeGreeting() {
+    var h = new Date().getHours();
+    if (h < 11) return '&#x65e9;&#x4e0a;&#x597d;';
+    if (h < 14) return '&#x4e2d;&#x5348;&#x597d;';
+    if (h < 18) return '&#x4e0b;&#x5348;&#x597d;';
+    return '&#x665a;&#x4e0a;&#x597d;';
+  }
+
+  function forceBlueBrand() {
+    var brand = document.querySelector('.side-brand');
+    if (!brand) return;
+    brand.innerHTML = '<span class="blue-brand-mark" aria-hidden="true"></span><span class="blue-brand-copy"><strong>Jobingho &#x7684;&#x5de5;&#x4f5c;&#x7a7a;&#x95f4;</strong><small>' + timeGreeting() + '&#xff01;&#x65b0;&#x7684;&#x4e00;&#x5929;&#x52aa;&#x529b;&#x5de5;&#x4f5c;</small></span>';
+  }
+
+  function updateBrandGreeting() {
+    var small = document.querySelector('.blue-brand-copy small');
+    if (small) small.innerHTML = timeGreeting() + '&#xff01;&#x65b0;&#x7684;&#x4e00;&#x5929;&#x52aa;&#x529b;&#x5de5;&#x4f5c;';
+  }
+
+  function bindWorkbenchCardActions() {
+    var newsMore = document.querySelector('.blue-home-news .blue-home-more');
+    if (newsMore && newsMore.dataset.boundNews !== '1') {
+      newsMore.dataset.boundNews = '1';
+      newsMore.addEventListener('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        openBlueView('newsFlash');
+      });
+    }
+    var todoCard = document.getElementById('openTodo');
+    if (todoCard && todoCard.dataset.boundTodo !== '1') {
+      todoCard.dataset.boundTodo = '1';
+      todoCard.addEventListener('click', function (event) {
+        event.preventDefault();
+        if (typeof window.openTodoPanel === 'function') window.openTodoPanel();
+      });
+    }
+    var calCard = document.querySelector('.blue-home-calendar[data-view-nav="activityCalendar"]');
+    if (calCard && calCard.dataset.boundCalendar !== '1') {
+      calCard.dataset.boundCalendar = '1';
+      calCard.addEventListener('click', function () { openBlueView('activityCalendar'); });
+    }
+  }
+
   function applyNav() {
     var rail = document.querySelector('.side-rail');
     var brand = document.querySelector('.side-brand');
-    if (!rail || rail.dataset.blueFullNav === '1') return;
+    if (!rail) return;
+    if (rail.dataset.blueFullNav === '1') { forceBlueBrand(); return; }
     rail.dataset.blueFullNav = '1';
     if (brand) {
-      brand.innerHTML = '<span class="blue-brand-mark"></span><span class="blue-brand-copy"><strong>Jobingho &#x7684;&#x5de5;&#x4f5c;&#x7a7a;&#x95f4;</strong><small>&#x65e9;&#x4e0a;&#x597d;&#xff01;&#x65b0;&#x7684;&#x4e00;&#x5929;&#x52aa;&#x529b;&#x5de5;&#x4f5c;</small></span>';
+      brand.innerHTML = '<span class="blue-brand-mark" aria-hidden="true"></span><span class="blue-brand-copy"><strong>Jobingho &#x7684;&#x5de5;&#x4f5c;&#x7a7a;&#x95f4;</strong><small>' + timeGreeting() + '&#xff01;&#x65b0;&#x7684;&#x4e00;&#x5929;&#x52aa;&#x529b;&#x5de5;&#x4f5c;</small></span>';
     }
     Array.prototype.slice.call(rail.children).forEach(function (child) {
       if (child !== brand) child.remove();
@@ -186,7 +232,8 @@
 
   function restoreWorkbenchExtras() {
     var grid = document.querySelector('#view-workbench .placeholder-grid');
-    if (!grid || grid.dataset.blueRestored === '1') return;
+    if (!grid) return;
+    if (grid.dataset.blueRestored === '1') { bindWorkbenchCardActions(); return; }
     var news = currentNewsItems();
     var newsHtml = news.length
       ? news.map(function (newsItem) { return '<div class="todo-preview-item"><span class="todo-preview-dot"></span><span>' + htmlText(newsItem.title || newsItem.summary || newsItem.content || '&#x8d44;&#x8baf;&#x5feb;&#x62a5;') + '</span></div>'; }).join('')
@@ -215,6 +262,8 @@
       '<div class="placeholder-card blue-home-report"><span class="module-icon ico-data"></span><h3>&#x62a5;&#x544a;&#x5165;&#x53e3;</h3><p>&#x65e5;&#x62a5;&#x3001;&#x5468;&#x62a5;&#x5185;&#x5bb9;&#x5728;&#x5de6;&#x4fa7;&#x201c;&#x6570;&#x636e;&#x7edf;&#x8ba1;&#x201d;&#x4e0b;&#xff0c;&#x53ef;&#x76f4;&#x63a5;&#x6253;&#x5f00;&#x3002;</p></div>';
     var calCard = grid.querySelector('[data-view-nav="activityCalendar"]');
     if (calCard) calCard.addEventListener('click', function () { openBlueView('activityCalendar'); });
+    var newsMore = grid.querySelector('.blue-home-news .blue-home-more');
+    if (newsMore) newsMore.addEventListener('click', function (event) { event.preventDefault(); event.stopPropagation(); openBlueView('newsFlash'); });
     var todoCard = document.getElementById('openTodo');
     if (todoCard) {
       todoCard.addEventListener('click', function (event) {
