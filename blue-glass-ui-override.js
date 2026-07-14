@@ -1,5 +1,5 @@
 (function () {
-  var BLUE_VERSION = 'home-layout-20260713-07';
+  var BLUE_VERSION = 'menu-shell-20260713-01';
 
   function keepBlueThemeLast() {
     var orange = document.getElementById('orange-sidebar-lock-link');
@@ -82,11 +82,24 @@
     }
   }
 
-  function applyNav() {
+
+  function ensureNavShell() {
+    var rail = document.querySelector('.side-rail');
+    var brand = document.querySelector('.side-brand');
+    if (!rail || rail.querySelector('.blue-nav-shell')) return;
+    var shell = document.createElement('div');
+    shell.className = 'blue-nav-shell';
+    var move = [];
+    Array.prototype.slice.call(rail.children).forEach(function (child) {
+      if (child !== brand) move.push(child);
+    });
+    move.forEach(function (child) { shell.appendChild(child); });
+    rail.appendChild(shell);
+  }  function applyNav() {
     var rail = document.querySelector('.side-rail');
     var brand = document.querySelector('.side-brand');
     if (!rail) return;
-    if (rail.dataset.blueFullNav === '1') { forceBlueBrand(); return; }
+    if (rail.dataset.blueFullNav === '1') { forceBlueBrand(); ensureNavShell(); return; }
     rail.dataset.blueFullNav = '1';
     if (brand) {
       brand.innerHTML = '<span class="blue-brand-mark" aria-hidden="true"><span class="blue-brand-fish">&#x1f41f;</span><span class="blue-brand-bubbles"></span></span><span class="blue-brand-copy"><strong>Jobingho &#x7684;&#x5de5;&#x4f5c;&#x7a7a;&#x95f4;</strong><small>' + timeGreeting() + '&#xff01;&#x65b0;&#x7684;&#x4e00;&#x5929;&#x52aa;&#x529b;&#x5de5;&#x4f5c;</small></span>';
@@ -109,6 +122,7 @@
       item('risk', 'ico-risk', '&#x98ce;&#x63a7;&#x5ba1;&#x6279;') +
       item('settings', 'ico-settings', '&#x7cfb;&#x7edf;&#x8bbe;&#x7f6e;')
     );
+    ensureNavShell();
     Array.prototype.slice.call(document.querySelectorAll('[data-view-nav]')).forEach(function (nav) {
       nav.addEventListener('click', function (event) {
         if (event.target && event.target.closest && event.target.closest('.nav-toggle')) return;
@@ -206,6 +220,7 @@
         view.classList.toggle('active', view.id === 'view-' + id);
       });
     }
+    ensureNavShell();
     Array.prototype.slice.call(document.querySelectorAll('[data-view-nav]')).forEach(function (nav) {
       nav.classList.toggle('active', normalizeView(nav.getAttribute('data-view-nav')) === id);
     });
@@ -924,13 +939,97 @@
   setInterval(patchDailyRefreshPersistence, 1500);
   setTimeout(patchDailyRefreshPersistence, 500);
 })();
-
-
-
-
-
-
-
-
-
-
+/* DXW publish panel safety patch: local-only publishing controls and public permission hiding. */
+(function () {
+  function isLocalAdmin() {
+    return location.protocol === 'file:' || location.hostname === '127.0.0.1' || location.hostname === 'localhost';
+  }
+  function byId(id) { return document.getElementById(id); }
+  function setStatus(text, state) {
+    var el = byId('publishStatus');
+    if (!el) return;
+    el.textContent = text;
+    el.className = ('publish-status ' + (state || '')).trim();
+  }
+  function hidePublicOnlyBlocks() {
+    var local = isLocalAdmin();
+    document.querySelectorAll('.local-permission-section').forEach(function (el) {
+      el.style.display = local ? '' : 'none';
+    });
+    if (!local) {
+      document.querySelectorAll('.settings-card').forEach(function (card) {
+        var title = card.querySelector('h3');
+        if (title && title.textContent.trim() === '\u6743\u9650\u5206\u914d') card.style.display = 'none';
+      });
+      document.querySelectorAll('#view-settings h2').forEach(function (title) {
+        if (title.textContent.trim() === '\u6743\u9650\u5206\u914d') {
+          title.style.display = 'none';
+          var next = title.nextElementSibling;
+          if (next && next.classList.contains('table-wrap')) next.style.display = 'none';
+        }
+      });
+    }
+  }
+  function saveTokenFromInput() {
+    var input = byId('publishToken');
+    var token = input ? input.value.trim() : '';
+    if (token && token !== input.getAttribute('placeholder')) {
+      try { localStorage.setItem('dxw-publish-config-v1:token', token); } catch (e) {}
+    }
+    try { return localStorage.getItem('dxw-publish-config-v1:token') || ''; } catch (e) { return token; }
+  }
+  function wirePublishButton() {
+    var latest = byId('publishLatestVersion');
+    if (latest && latest.dataset.dxwPublishSafe !== '1') {
+      latest.dataset.dxwPublishSafe = '1';
+      latest.addEventListener('click', async function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (!isLocalAdmin()) { setStatus('\u516c\u5f00\u94fe\u63a5\u4e0d\u5141\u8bb8\u53d1\u5e03\uff0c\u8bf7\u5728\u672c\u5730\u9875\u9762\u64cd\u4f5c\u3002', 'fail'); return; }
+        var token = saveTokenFromInput();
+        if (!token) { setStatus('\u8bf7\u5148\u586b\u5199 GitHub \u53d1\u5e03\u4ee4\u724c\uff0c\u7136\u540e\u70b9\u201c\u4fdd\u5b58\u8bbe\u7f6e\u201d\u6216\u518d\u70b9\u4e00\u6b21\u53d1\u5e03\u3002', 'fail'); return; }
+        latest.disabled = true;
+        setStatus('\u6b63\u5728\u8bb0\u5f55\u5f53\u524d\u7248\u672c\u5e76\u53d1\u5e03\u5230\u516c\u5f00\u94fe\u63a5\uff0c\u8bf7\u7a0d\u5019...', '');
+        try {
+          if (typeof window.publishLatestVersion !== 'function') throw new Error('\u53d1\u5e03\u51fd\u6570\u672a\u52a0\u8f7d\uff0c\u8bf7 Ctrl+F5 \u5f3a\u5236\u5237\u65b0\u540e\u91cd\u8bd5\u3002');
+          await window.publishLatestVersion();
+        } catch (err) {
+          setStatus('\u53d1\u5e03\u5931\u8d25\uff1a' + (err && err.message ? err.message : err), 'fail');
+        } finally {
+          latest.disabled = false;
+        }
+      }, true);
+    }
+    document.querySelectorAll('[data-publish-version]').forEach(function (btn) {
+      if (btn.dataset.dxwPublishSafe === '1') return;
+      btn.dataset.dxwPublishSafe = '1';
+      btn.addEventListener('click', async function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        var token = saveTokenFromInput();
+        if (!token) { setStatus('\u8bf7\u5148\u586b\u5199 GitHub \u53d1\u5e03\u4ee4\u724c\uff0c\u7136\u540e\u518d\u53d1\u5e03\u8be5\u7248\u672c\u3002', 'fail'); return; }
+        btn.disabled = true;
+        setStatus('\u6b63\u5728\u53d1\u5e03\u8be5\u7248\u672c\uff0c\u8bf7\u7a0d\u5019...', '');
+        try {
+          if (typeof window.publishRecordToGithub !== 'function') throw new Error('\u7248\u672c\u53d1\u5e03\u51fd\u6570\u672a\u52a0\u8f7d\uff0c\u8bf7 Ctrl+F5 \u5f3a\u5236\u5237\u65b0\u540e\u91cd\u8bd5\u3002');
+          await window.publishRecordToGithub(btn.dataset.publishVersion);
+        } catch (err) {
+          setStatus('\u53d1\u5e03\u5931\u8d25\uff1a' + (err && err.message ? err.message : err), 'fail');
+        } finally {
+          btn.disabled = false;
+        }
+      }, true);
+    });
+  }
+  function patchPublishPanel() {
+    hidePublicOnlyBlocks();
+    wirePublishButton();
+    if (typeof window.renderPublishVersions === 'function') {
+      try { window.renderPublishVersions(); } catch (e) {}
+    }
+  }
+  window.addEventListener('hashchange', function () { setTimeout(patchPublishPanel, 120); });
+  document.addEventListener('DOMContentLoaded', function () { setTimeout(patchPublishPanel, 250); });
+  setTimeout(patchPublishPanel, 500);
+  setInterval(patchPublishPanel, 2000);
+})();

@@ -2375,3 +2375,36 @@ html body.blue-glass-ui .blue-brand-bubbles::after {
   25% { opacity: .85; }
   100% { opacity: 0; transform: translateY(-10px) scale(1.2); }
 }
+/* Menu shell v1: make the glass panel include the full scrollable menu. */
+html body.blue-glass-ui .side-rail {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding: 28px 12px 28px !important;
+  scrollbar-gutter: stable !important;
+}
+
+html body.blue-glass-ui .side-rail::after {
+  display: none !important;
+}
+
+html body.blue-glass-ui .blue-nav-shell {
+  position: relative !important;
+  z-index: 1 !important;
+  display: block !important;
+  min-height: calc(100vh - 132px) !important;
+  padding: 10px 8px 12px !important;
+  border: 1px solid rgba(255,255,255,.72) !important;
+  border-radius: 14px !important;
+  background: linear-gradient(145deg, rgba(255,255,255,.56), rgba(242,248,255,.28)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.78), 0 12px 32px rgba(22,119,255,.08) !important;
+}
+
+html body.blue-glass-ui .blue-nav-shell .nav-item,
+html body.blue-glass-ui .blue-nav-shell .nav-subitem {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+html body.blue-glass-ui .blue-nav-shell .nav-item:last-child {
+  margin-bottom: 0 !important;
+}
