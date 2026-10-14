@@ -1,18 +1,18 @@
-﻿(()=>{
+(()=>{
 const $=id=>document.getElementById(id);
-const TODAY_STR='2026-07-13';
-const K={e:'dxw-activity-calendar-events-v14',l:'dxw-activity-calendar-logs-v14',s:'dxw-activity-calendar-settings-v14'};
+const TODAY_STR=(window.ADSTAT_DATA&&window.ADSTAT_DATA.range&&window.ADSTAT_DATA.range.end)||'2026-10-14';
+const K={e:'dxw-activity-calendar-events-v15',l:'dxw-activity-calendar-logs-v15',s:'dxw-activity-calendar-settings-v15'};
 const COLORS=['#80d2f2','#f2c94c','#d6b4ff','#f5b8c8','#9bd56a','#f7a35c','#66c6a3','#8ca4ff'];
 let st={date:date(TODAY_STR),mode:'month',edit:null,color:COLORS[0]};
 const seed=[
- ['seed-renewal-1','续费|神奇色阶','短线王续费','2026-07-01','2026-07-08',COLORS[0],'短线王续费：123元续6个月送6个月，230元续1年送1年，加送1个月神奇色阶。'],
- ['seed-new-1','新开|神奇色阶','短线王新开','2026-07-01','2026-07-08',COLORS[0],'短线王新开：123元买6个月送6个月，230元买1年送1年，加送1个月神奇色阶。'],
- ['seed-renew-countdown-1','续费|倒计时','倒计时','2026-07-09','2026-07-15',COLORS[1],'续费活动倒计时，强化神奇色阶权益提醒。'],
- ['seed-new-countdown-1','新开|倒计时','倒计时','2026-07-09','2026-07-15',COLORS[2],'新开活动倒计时，强化神奇色阶权益提醒。'],
- ['seed-renewal-2','续费|顶底大师','短线王续费','2026-07-16','2026-07-24',COLORS[3],'短线王续费：123元续6个月送6个月，230元续1年送1年，加送1个月顶底大师。'],
- ['seed-new-2','新开|顶底大师','短线王新开','2026-07-16','2026-07-24',COLORS[3],'短线王新开：123元买6个月送6个月，230元买1年送1年，加送1个月顶底大师。'],
- ['seed-renew-countdown-2','续费|倒计时','倒计时','2026-07-25','2026-07-31',COLORS[1],'续费活动倒计时，强化顶底大师权益提醒。'],
- ['seed-new-countdown-2','新开|倒计时','倒计时','2026-07-25','2026-07-31',COLORS[2],'新开活动倒计时，强化顶底大师权益提醒。']
+ ['seed-renewal-1','续费|神奇色阶','短线王续费','2026-10-08','2026-10-14',COLORS[0],'短线王续费：123元续6个月送6个月，230元续1年送1年，加送1个月神奇色阶。'],
+ ['seed-new-1','新开|神奇色阶','短线王新开','2026-10-08','2026-10-14',COLORS[0],'短线王新开：123元买6个月送6个月，230元买1年送1年，加送1个月神奇色阶。'],
+ ['seed-renew-countdown-1','续费|倒计时','倒计时','2026-10-14','2026-10-20',COLORS[1],'续费活动倒计时，强化神奇色阶权益提醒。'],
+ ['seed-new-countdown-1','新开|倒计时','倒计时','2026-10-14','2026-10-20',COLORS[2],'新开活动倒计时，强化神奇色阶权益提醒。'],
+ ['seed-renewal-2','续费|顶底大师','短线王续费','2026-10-15','2026-10-24',COLORS[3],'短线王续费：123元续6个月送6个月，230元续1年送1年，加送1个月顶底大师。'],
+ ['seed-new-2','新开|顶底大师','短线王新开','2026-10-15','2026-10-24',COLORS[3],'短线王新开：123元买6个月送6个月，230元买1年送1年，加送1个月顶底大师。'],
+ ['seed-renew-countdown-2','续费|倒计时','倒计时','2026-10-25','2026-10-31',COLORS[1],'续费活动倒计时，强化顶底大师权益提醒。'],
+ ['seed-new-countdown-2','新开|倒计时','倒计时','2026-10-25','2026-10-31',COLORS[2],'新开活动倒计时，强化顶底大师权益提醒。']
 ].map(x=>({id:x[0],title:x[1],category:x[2],start:x[3],end:x[4],startTime:'09:30',endTime:'18:00',allDay:true,status:date(x[4])<date(TODAY_STR)?'已完成':date(x[3])<=date(TODAY_STR)?'进行中':'未开始',color:x[5],location:x[2]==='倒计时'?'运营提醒':'APP+PC活动页',people:x[2]==='短线王新开'?'新开运营,投放,销售':'续费运营,投放,社群',files:x[2]==='倒计时'?0:2,note:x[6],archived:false,reminder:'30'}));
 function read(k,f){try{return JSON.parse(localStorage.getItem(k)||'null')??f}catch(e){return f}}
 function write(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
@@ -29,7 +29,7 @@ function settings(){return Object.assign({lunar:true,weekNo:true,holiday:true,co
 function range(){let d=st.date,m=st.mode;if(m==='week'){let s=add(d,-((d.getDay()+6)%7));return[s,add(s,6)]}if(m==='day')return[d,d];if(m==='range7')return[d,add(d,6)];if(m==='twoMonths')return[new Date(d.getFullYear(),d.getMonth(),1),new Date(d.getFullYear(),d.getMonth()+2,0)];if(m==='custom')return[date($('calendarStart').value||iso(d)),date($('calendarEnd').value||iso(add(d,6)))];return[new Date(d.getFullYear(),d.getMonth(),1),new Date(d.getFullYear(),d.getMonth()+1,0)]}
 function lunar(d){try{return new Intl.DateTimeFormat('zh-CN-u-ca-chinese',{month:'long',day:'numeric'}).format(d).replace(/^\d+年/,'')}catch(e){return ''}}
 function weekNo(d){let one=new Date(d.getFullYear(),0,1);return Math.ceil((((d-one)/86400000)+one.getDay()+1)/7)}
-function fest(id,weekend){return {'2026-07-01':'建党节','2026-07-07':'小暑','2026-07-15':'阶段止','2026-07-16':'阶段启','2026-07-23':'大暑','2026-07-31':'月末止'}[id]||(weekend?'休':'')}
+function fest(id,weekend){return {'2026-10-01':'国庆节','2026-10-02':'国庆假期','2026-10-03':'国庆假期','2026-10-04':'国庆假期','2026-10-05':'中秋节','2026-10-08':'节后复盘','2026-10-14':'数据更新','2026-10-31':'月末止'}[id]||(weekend?'休':'')}
 function buildShell(){
  let view=$('view-activityCalendar'); if(!view)return; view.innerHTML=`
   <section class="activity-page-shell">

@@ -1,5 +1,5 @@
 (function () {
-  var BLUE_VERSION = 'menu-shell-20260713-01';
+  var BLUE_VERSION = 'latest-data-20261014-2015';
 
   function keepBlueThemeLast() {
     var orange = document.getElementById('orange-sidebar-lock-link');
@@ -112,7 +112,7 @@
       item('project', 'ico-project', '&#x9879;&#x76ee;&#x7ba1;&#x7406;', 'nav-parent expanded') +
       '<div class="nav-subgroup open">' + sub('activityCalendar', '&#x6d3b;&#x52a8;&#x65e5;&#x5386;') + sub('document', '&#x590d;&#x76d8;&#x6587;&#x6863;') + sub('material', '&#x7d20;&#x6750;&#x5e93;') + '</div>' +
       item('data', 'ico-data', '&#x6570;&#x636e;&#x7edf;&#x8ba1;', 'nav-parent expanded') +
-      '<div class="nav-subgroup open">' + sub('data', '&#x6570;&#x636e;&#x603b;&#x8868;') + sub('dailyReport', '&#x65e5;&#x62a5;&#x8868;') + sub('weeklyReport', '&#x5468;&#x62a5;&#x8868;') + '</div>' +
+      '<div class="nav-subgroup open">' + sub('data', '&#x6570;&#x636e;&#x603b;&#x8868;') + sub('dailyReport', '&#x65e5;&#x62a5;&#x8868;') + '</div>' +
       item('strategy', 'ico-auto', '&#x6295;&#x653e;&#x7b56;&#x7565;', 'nav-parent expanded') +
       '<div class="nav-subgroup open">' + sub('automation', '&#x5e7f;&#x544a;&#x81ea;&#x52a8;&#x5316;') + sub('experience', '&#x6295;&#x653e;&#x7ecf;&#x9a8c;') + '</div>' +
       item('newsFlash', 'ico-news', '&#x5185;&#x5bb9;&#x8fd0;&#x8425;', 'nav-parent expanded') +
