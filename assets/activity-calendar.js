@@ -1,7 +1,7 @@
 (()=>{
 const $=id=>document.getElementById(id);
 const TODAY_STR=(window.ADSTAT_DATA&&window.ADSTAT_DATA.range&&window.ADSTAT_DATA.range.end)||'2026-10-14';
-const K={e:'dxw-activity-calendar-events-v15',l:'dxw-activity-calendar-logs-v15',s:'dxw-activity-calendar-settings-v15'};
+const K={e:'dxw-activity-calendar-events-v16',l:'dxw-activity-calendar-logs-v16',s:'dxw-activity-calendar-settings-v16'};
 const COLORS=['#80d2f2','#f2c94c','#d6b4ff','#f5b8c8','#9bd56a','#f7a35c','#66c6a3','#8ca4ff'];
 let st={date:date(TODAY_STR),mode:'month',edit:null,color:COLORS[0]};
 const seed=[
@@ -21,7 +21,8 @@ function date(s){return new Date(`${s}T00:00:00`)}
 function iso(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
 function add(d,n){let x=new Date(d);x.setDate(x.getDate()+n);return x}
 function inRange(e,s,en){return date(e.start)<=en&&date(e.end||e.start)>=s}
-function events(){let v=read(K.e,null);if(!Array.isArray(v)){v=seed;write(K.e,v);log('系统初始化活动排期',false)}return v}
+function dataSeed(){let rows=(window.ADSTAT_DATA&&Array.isArray(window.ADSTAT_DATA.rows))?window.ADSTAT_DATA.rows:[],recent=rows.filter(r=>r&&r.date&&String(r.date).slice(0,7)===TODAY_STR.slice(0,7));if(!recent.length)recent=rows.filter(r=>r&&r.date).slice(-80);let groups=new Map();recent.forEach(r=>{let key=[r.date,r.projectName||'短线王',r.channel||'ALL'].join('|'),g=groups.get(key)||{date:r.date,project:r.projectName||'短线王',channel:r.channel||'ALL',popup:0,click:0,order:0,deal:0,ads:new Set()};g.popup+=Number(r.popup||0);g.click+=Number(r.click||0);g.order+=Number(r.order||0);g.deal+=Number(r.deal||0);if(r.adId)g.ads.add(r.adId);groups.set(key,g)});let out=[...groups.values()].sort((a,b)=>(a.date+a.project+a.channel).localeCompare(b.date+b.project+b.channel)).map((g,i)=>{let project=g.project.includes('新开')?'短线王新开':'短线王续费',rate=g.popup?((g.click/g.popup)*100).toFixed(2):'0.00';return{id:`data-${g.date}-${g.channel}-${i}`,title:`${project}|${g.channel}投放`,category:project,start:g.date,end:g.date,startTime:'09:30',endTime:'18:00',allDay:true,status:date(g.date)<date(TODAY_STR)?'已完成':date(g.date)<=date(TODAY_STR)?'进行中':'未开始',color:g.project.includes('新开')?COLORS[2]:COLORS[0],location:`${g.channel}广告数据`,people:'运营,投放,销售',files:g.ads.size,note:`广告 ${g.ads.size} 条，弹出 ${g.popup}，点击 ${g.click}，点击率 ${rate}%，订单 ${g.order}，成交 ${g.deal}。`,archived:false,reminder:'30'}});return out.length?out:seed}
+function events(){let v=read(K.e,null);if(!Array.isArray(v)){v=dataSeed();write(K.e,v);log('系统已按最新广告数据初始化活动日历',false)}return v}
 function logs(){return read(K.l,[])}
 function log(t,r=true){let v=logs();v.unshift({time:new Date().toLocaleString('zh-CN',{hour12:false}),text:t});write(K.l,v.slice(0,10));if(r)renderLogs()}
 function save(v,t){write(K.e,v);if(t)log(t);render()}

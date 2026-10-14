@@ -1,5 +1,5 @@
 (function () {
-  var BLUE_VERSION = 'latest-data-20261014-2015';
+  var BLUE_VERSION = 'latest-data-20261014-activity-v16';
 
   function keepBlueThemeLast() {
     var orange = document.getElementById('orange-sidebar-lock-link');
